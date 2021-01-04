@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Annonces;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        //On récupère toutes les annonces
+        $annonces = Annonces::all();
+
+        return view('home', [
+            'annonces' => $annonces
+        ]);
     }
 }

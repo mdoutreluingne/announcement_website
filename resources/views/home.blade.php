@@ -1,23 +1,27 @@
 @extends('layouts.app')
 
+@section('title', 'Accueil')
+
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+        @foreach ($annonces as $annonce)
+            <div class="col-3">
+                <article class="card">
+                    <header class="card-header">
+                        <h1>{{ $annonce->title }}</h1>
+                    </header>
+                    <div class="card-body">
+                        <div>
+                            {{ $annonce->content }}
                         </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
+                    </div>
+                    <footer class="card-footer">
+                        {{ $annonce->created_at->format('d/m/Y à H:i:s') }}
+                    </footer>
+                </article>
             </div>
-        </div>
+        @endforeach
     </div>
 </div>
 @endsection
